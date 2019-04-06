@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ProjectsOverview>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+@{
+	var selection = Model.Content.Site().FirstChild("projectsOverview").Children("projectItem")
+						
+						.OrderBy("CreateDate desc");
+}
+
+<section id="three" class="wrapper style3 special">
+				<div class="inner">
+					
+					<br><br><br>
+					<ul>
+                    	@foreach(var item in selection){
+                    		
+                    		<div class="article">
+                        <div class="articletitle"><a href="@item.Url">@item.Name</a></div>
+                        <div class="articlepreview">@Umbraco.Field("projectDescription").ToString().Truncate(100) <a href="@item.Url">Read More..</a></div>
+                    </div>
+                    <hr/>
+                    		
+                    	}
+                    </ul>
+					
+				
+				</div>
+		
+
+
+
